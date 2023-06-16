@@ -26,10 +26,15 @@ io.on("connection", (socket) => {
         done(roomName)
         
     })
-    socket.on("send_message", (message, done) => {
-        console.log(socket.rooms[1])
-        socket.to("hihi").emit("new_message", message)
-        done(message)
+    socket.on("send_message", (msg, room, nickName, done) => {
+        socket.to(room).emit("new_message", msg, nickName)
+        done()
+    })
+    socket.on("disconnecting", (reason) => {
+        console.log(reason)
+        socket.rooms.forEach(room => {
+            socket.to(room).emit("bye")
+        });
     })
 })
 

@@ -11,7 +11,10 @@ html(lang="en")
             h1 Zoom
         main
             div#welcome
-                form 
+                form#nickname
+                    input(placeholder="Your nickname", required, type="text")
+                    button Enter nickname
+                form#roomname
                     input(placeholder="Room Name", required, type="text")
                     button Enter Room
             div#room
